@@ -1,0 +1,15 @@
+{
+  "name": "meshchain",
+  "version": "1.0.0",
+  "description": "auto farm for meshchain extension",
+  "main": "mesh.js",
+  "scripts": {
+    "start": "node mesh.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "p-limit": "^6.2.0",
+    "socks-proxy-agent": "^8.0.5",
+    "user-agents": "^1.1.439"
+  }
+}

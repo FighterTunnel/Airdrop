@@ -1,13 +1,7 @@
 #!/bin/bash
-while true; do
-    read -p "Please input the content of PKey: " pem_content
-    if [[ -z "$pem_content" ]]; then
-        echo "Private key content cannot be empty. Please try again."
-    else
-        echo "$pem_content" > my.pem
-        break
-    fi
-done
+
+read -p "Please input the content of PKey: " pem_content
+
 apt update -y
 curl https://download.hyper.space/api/install | bash
 cp /root/.aios/aios-cli /usr/bin/aios-cli

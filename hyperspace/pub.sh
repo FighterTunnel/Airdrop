@@ -1,9 +1,4 @@
 #!/bin/bash
-apt update -y
-curl https://download.hyper.space/api/install | bash
-cp /root/.aios/aios-cli /usr/bin/aios-cli
-
-# Validate and read private key content
 while true; do
     read -p "Please input the content of PKey: " pem_content
     if [[ -z "$pem_content" ]]; then
@@ -13,6 +8,12 @@ while true; do
         break
     fi
 done
+apt update -y
+curl https://download.hyper.space/api/install | bash
+cp /root/.aios/aios-cli /usr/bin/aios-cli
+
+# Validate and read private key content
+
 
 chmod 600 my.pem
 tmux new-session -d -s "hyperspace" "aios-cli start"

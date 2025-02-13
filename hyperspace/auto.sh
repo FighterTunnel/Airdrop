@@ -1,7 +1,7 @@
 #!/bin/bash
 apt update -y
 curl https://download.hyper.space/api/install | bash
-source /root/.bashrc
+cp /root/.aios/aios-cli /usr/bin/aios-cli
 
 wget https://raw.githubusercontent.com/FighterTunnel/Airdrop/refs/heads/main/hyperspace/my.pem
 chmod 600 my.pem

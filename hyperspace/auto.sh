@@ -6,6 +6,7 @@ cp /root/.aios/aios-cli /usr/bin/aios-cli
 wget https://raw.githubusercontent.com/FighterTunnel/Airdrop/refs/heads/main/hyperspace/my.pem
 chmod 600 my.pem
 tmux new-session -d -s "hyperspace" "aios-cli start"
+sleep 10
 
 aios-cli models add hf:TheBloke/phi-2-GGUF:phi-2.Q4_K_M.gguf
 aios-cli hive import-keys ./my.pem

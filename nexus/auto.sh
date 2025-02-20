@@ -12,7 +12,7 @@ cargo --version
 rustup update
 
 # Clone and build Nexus Network API
-git clone https://github.com/nexus-network/nexus-network-api.git
+git clone https://github.com/nexus-network/nexus-network-api
 cd nexus-network-api
 cargo build --release
 

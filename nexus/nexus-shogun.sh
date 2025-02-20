@@ -8,6 +8,23 @@ SWAP_FILE="/swapfile"
 SWAP_SIZE="8G" 
 
 mkdir -p /root/.nexus
+sleep 1 
+echo -e "\e[1;34m
+▓██   ██▓ ██░ ██  ▄▄▄      
+ ▒██  ██▒▓██░ ██▒▒████▄    
+  ▒██ ██░▒██▀▀██░▒██  ▀█▄  
+  ░ ▐██▓░░▓█ ░██ ░██▄▄▄▄██ 
+  ░ ██▒▓░░▓█▒░██▓ ▓█   ▓██▒
+   ██▒▒▒  ▒ ░░▒░▒ ▒▒   ▓▒█░
+ ▓██ ░▒░  ▒ ░▒░ ░  ▒   ▒▒ ░
+ ▒ ▒ ░░   ░  ░░ ░  ░   ▒   
+ ░ ░      ░  ░  ░      ░  ░
+ ░ ░                       
+\e[0m"
+echo -e "\e[1;33mAUTOMATIC NODE INSTALLER\e[0m"
+echo -e "\e[1;32mBY @yha_bot\e[0m"
+echo "
+"
 while true; do
     read -p "Enter your CLI node (only numbers): " CLI_NODE
     if [[ "$CLI_NODE" =~ ^[0-9]+$ ]]; then

@@ -8,9 +8,16 @@ SWAP_FILE="/swapfile"
 SWAP_SIZE="8G" 
 
 mkdir -p /root/.nexus
-read -p "Enter your CLI node: " CLI_NODE
-echo "CLI_NODE=$CLI_NODE" >> /root/.nexus/node-id
-chmod +x /root/.nexus/node-id
+while true; do
+    read -p "Enter your CLI node (only numbers): " CLI_NODE
+    if [[ "$CLI_NODE" =~ ^[0-9]+$ ]]; then
+        echo "CLI_NODE=$CLI_NODE" >> /root/.nexus/node-id
+        chmod +x /root/.nexus/node-id
+        break
+    else
+        echo "Invalid input: Please enter only numbers."
+    fi
+done
 # Update and install necessary packages
 sudo apt update && sudo apt upgrade -y
 if [ $? -ne 0 ]; then

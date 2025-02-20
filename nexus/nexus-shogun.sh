@@ -7,6 +7,10 @@ CLI_DIR="/root/network-api/clients/cli"
 SWAP_FILE="/swapfile"
 SWAP_SIZE="8G" 
 
+mkdir -p /root/.nexus
+read -p "Enter your CLI node: " CLI_NODE
+echo "CLI_NODE=$CLI_NODE" >> /root/.nexus/node-id
+chmod +x /root/.nexus/node-id
 # Update and install necessary packages
 sudo apt update && sudo apt upgrade -y
 if [ $? -ne 0 ]; then
@@ -90,6 +94,56 @@ if ! rustup component add rust-src; then
     exit 1
 fi
 
-# Build and run the CLI
-cd "$CLI_DIR"
-cargo run -r -- start --env beta
+# Create a systemd service file for the CLI
+cat <<EOF > /usr/bin/nexus-cli
+#!/bin/bash
+# Set environment variables
+export PATH="$HOME/.cargo/bin:$PATH"
+export CLI_DIR="/root/network-api/clients/cli"
+
+# Change to the CLI directory
+cd "$CLI_DIR" || { echo "Failed to change directory to $CLI_DIR"; exit 1; }
+
+# Run the CLI with cargo
+/root/.cargo/bin/cargo run -r -- start --env beta
+EOF
+chmod +x /usr/bin/nexus-cli
+cat <<EOF > /usr/bin/nexus-cli-start
+#!/bin/bash
+echo y | nexus-cli
+EOF
+chmod +x /usr/bin/nexus-cli-start
+
+cat <<EOF > /etc/systemd/system/nexus-cli.service
+[Unit]
+Description=Nexus Network CLI
+After=syslog.target network-online.target
+
+[Service]
+User=root
+NoNewPrivileges=true
+ExecStart=/usr/bin/nexus-cli-start
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+
+systemctl daemon-reload
+systemctl enable nexus-cli.service
+systemctl start nexus-cli.service
+green="\e[32m"
+red="\e[31m"
+neutral="\e[0m"
+        cek_status() {
+            status=$(systemctl is-active --quiet $1 && echo "aktif" || echo "nonaktif")
+            if [ "$status" = "aktif" ]; then
+                echo -e "${green}GOOD${neutral}"
+            else
+                echo -e "${red}BAD${neutral}"
+            fi
+        }
+echo -e "====================="
+echo -e "AIRDROP SHOGUN"
+echo -e "Nexus Network CLI: $(cek_status nexus-cli.service)"
+echo -e "====================="

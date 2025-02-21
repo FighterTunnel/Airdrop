@@ -7,7 +7,7 @@ neutral="\e[0m"
 if grep -q "CLI_NODE=" /root/.nexus/node-id; then
     sed -i 's/CLI_NODE=//g' /root/.nexus/node-id
 else
-    echo "The term 'CLI_NODE=' does not exist in the file."
+    echo "AMAN BANH."
 fi
 systemctl stop nexus-cli
 cd /root/network-api

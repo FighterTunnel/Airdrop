@@ -27,6 +27,9 @@ sleep 3
 # Load environment variables
 source /root/.bashrc
 
+# Ensure GaiaNet is in the PATH
+export PATH="/root/gaianet/bin:$PATH"
+
 # Initialize and start GaiaNet
 gaianet init
 gaianet start

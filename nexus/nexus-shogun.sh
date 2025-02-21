@@ -28,7 +28,7 @@ echo "
 while true; do
     read -p "Enter your CLI node (only numbers): " CLI_NODE
     if [[ "$CLI_NODE" =~ ^[0-9]+$ ]]; then
-        echo "CLI_NODE=$CLI_NODE" >> /root/.nexus/node-id
+        echo "$CLI_NODE" >> /root/.nexus/node-id
         chmod +x /root/.nexus/node-id
         break
     else

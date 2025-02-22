@@ -5,7 +5,7 @@ set -e
 # Update package list
 apt update -y
 SWAP_FILE="/swapfile"
-SWAP_SIZE="30G" 
+SWAP_SIZE="8G" 
 
 if [ ! -f "$SWAP_FILE" ]; then
     fallocate -l $SWAP_SIZE $SWAP_FILE
@@ -31,12 +31,10 @@ source /root/.bashrc
 export PATH="/root/gaianet/bin:$PATH"
 
 # Initialize and start GaiaNet
-gaianet init
-gaianet start
 
-# Stop GaiaNet and reinitialize with custom config
-gaianet stop
-gaianet init --config https://raw.githubusercontent.com/GaiaNet-AI/node-configs/main/qwen2-0.5b-instruct/config.json
+
+# Reinitialize with custom config
+gaianet init --config https://raw.githubusercontent.com/GaiaNet-AI/node-configs/main/qwen-1.5-0.5b-chat/config.json
 
 # Start GaiaNet again and display info
 gaianet start

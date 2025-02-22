@@ -34,8 +34,11 @@ export PATH="/root/gaianet/bin:$PATH"
 
 
 # Reinitialize with custom config
-gaianet init --config https://raw.githubusercontent.com/GaiaNet-AI/node-configs/main/qwen-1.5-0.5b-chat/config.json
+gaianet init --config https://raw.githubusercontent.com/GaiaNet-AI/node-configs/main/qwen2-0.5b-instruct/config.json 
+gaianet config --domain gaia.domains 
 
 # Start GaiaNet again and display info
+gaianet init 
 gaianet start
 gaianet info
+echo "Join domain: qwen05.gaia.domains"

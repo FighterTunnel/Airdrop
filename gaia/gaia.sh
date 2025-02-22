@@ -42,5 +42,4 @@ gaianet init
 gaianet start
 gaianet info
 echo ""
-echo "Join domain: qwen05.gaia.domains"
 echo ""

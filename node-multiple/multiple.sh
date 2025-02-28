@@ -34,10 +34,10 @@ ARCHITECTURE=$(uname -m)
 # Mengatur URL sesuai arsitektur
 if [ "$ARCHITECTURE" == "x86_64" ]; then
     CLIENT_URL="wget https://mdeck-download.s3.us-east-1.amazonaws.com/client/linux/MultipleForLinux.tar"
-    CLIENT_FILE="multipleforlinux.tar"
+    CLIENT_FILE="MultipleForLinux.tar"
 elif [ "$ARCHITECTURE" == "aarch64" ]; then
     CLIENT_URL="https://cdn.app.multiple.cc/client/linux/arm64/multipleforlinux.tar"
-    CLIENT_FILE="multipleforlinux.tar"
+    CLIENT_FILE="MultipleForLinux.tar"
 else
     echo "Arsitektur tidak didukung: $ARCHITECTURE"
     exit 1

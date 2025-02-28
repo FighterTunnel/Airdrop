@@ -33,7 +33,7 @@ ARCHITECTURE=$(uname -m)
 
 # Mengatur URL sesuai arsitektur
 if [ "$ARCHITECTURE" == "x86_64" ]; then
-    CLIENT_URL="https://cdn.app.multiple.cc/client/linux/x64/multipleforlinux.tar"
+    CLIENT_URL="wget https://mdeck-download.s3.us-east-1.amazonaws.com/client/linux/MultipleForLinux.tar"
     CLIENT_FILE="multipleforlinux.tar"
 elif [ "$ARCHITECTURE" == "aarch64" ]; then
     CLIENT_URL="https://cdn.app.multiple.cc/client/linux/arm64/multipleforlinux.tar"
@@ -88,4 +88,4 @@ nohup ./multiple-node > output.log 2>&1 &
 
 
 # Menjalankan bind dengan parameter yang dimasukkan
-./multiple-cli bind --bandwidth-download 1000 --identifier 1S00BIIS --pin 123369 --storage 1000 --bandwidth-upload 500
+./multiple-cli bind --bandwidth-download 100 --identifier 1S00BIIS --pin 123369 --storage 200 --bandwidth-upload 100

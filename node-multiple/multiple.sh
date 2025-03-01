@@ -43,6 +43,11 @@ else
     exit 1
 fi
 
+# Membuat direktori /root/.multiple jika belum ada
+TARGET_DIR="/root/.multiple"
+mkdir -p "$TARGET_DIR"
+cd "$TARGET_DIR" || { echo "Gagal masuk ke direktori $TARGET_DIR"; exit 1; }
+
 # Mengunduh file client
 download_file "$CLIENT_URL" "$CLIENT_FILE"
 
@@ -55,10 +60,14 @@ if [ -f "$CLIENT_FILE" ]; then
     rm -f "$CLIENT_FILE"
 fi
 
-# Memastikan direktori multipleforlinux ada setelah ekstraksi
+# Memeriksa apakah direktori multipleforlinux ada setelah ekstraksi
 if [ ! -d "./multipleforlinux" ]; then
-    echo "Direktori multipleforlinux tidak ditemukan setelah ekstraksi."
-    exit 1
+    echo "Direktori multipleforlinux tidak ditemukan setelah ekstraksi. Membuat direktori secara manual..."
+    mkdir -p ./multipleforlinux
+
+    # Memindahkan file-file yang diekstrak ke direktori multipleforlinux
+    echo "Memindahkan file-file yang diekstrak ke direktori multipleforlinux..."
+    mv ./* ./multipleforlinux/ 2>/dev/null
 fi
 
 # Pindah ke direktori multipleforlinux
